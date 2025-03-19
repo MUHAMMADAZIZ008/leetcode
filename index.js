@@ -1,20 +1,50 @@
 /**
- * @param {number[]} prices
+ * @param {number} x
  * @return {number}
  */
-var maxProfit = function (prices) {
-  const maxPro = 0;
-  for (let i = 0; i < prices.length; i++) {
-    for (let j = i + 1; j < prices.length; j++) {
-      let profit = prices[j] - prices[i];
-      if (profit > maxPro) {
-        maxPro = profit;
+var reverse = function (x) {
+  let reversedNumber = "";
+  let isMinus = false;
+  let num = String(x);
+  if (x < 0) {
+    isMinus = true;
+  }
+
+  for (let i = num.length - 1; i >= 0; i--) {
+    if (isMinus) {
+      if (i === num.length - 1) {
+        reversedNumber += "-";
+        reversedNumber += num[i];
+      } else if (num[i] !== "-") {
+        reversedNumber += num[i];
       }
     }
+    // if (!isMinus && num[i] !== "0") {
+    //   reversedNumber += num[i];
+    // }
   }
-  return maxPro;
-};
 
-// const prices = [7, 1, 5, 3, 6, 4];
-const prices = [7, 6, 4, 3, 1];
-console.log(maxProfit(prices));
+  if (!isMinus) {
+    let num = String(x);
+    let lastPositive = 0;
+    for (let i = 0; i < num.length; i++) {
+      if (num[i] > 0) {
+        lastPositive = i;
+      }
+    }    
+    let num2 = num.split(num[lastPositive]);
+    let result = "";
+    console.log(num2);
+    
+  }
+
+  if (isMinus) {
+    return reversedNumber;
+  }
+};
+// const x = 123
+// const x = -123;
+// const x = 120;
+const x = 1901000;
+
+console.log(reverse(x));
