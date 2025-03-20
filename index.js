@@ -1,18 +1,34 @@
-/**
- * @param {number} n
- * @return {boolean}
- */
-var isUgly = function (n) {
-  if (n === 1) {
-    return true;
-  }
-  for (let i = 1; i <= 10; i++) {
-    if (n % i === 0 && i % 2 && i !== 2 && i !== 3 && i !== 5) {
-      return false;
+var findMissingAndRepeatedValues = function (grid) {
+
+  const numberCount = {};
+  let repeatedValue = 0;
+  let findValue = 1;
+  let counter = 0
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      let key = String(grid[i][j]);
+      if (+numberCount[key] >= 2) {
+        repeatedValue = grid[i][j];
+      }
+      if (!numberCount[key]) {
+        numberCount[key] = 1;
+      } 
+      if (numberCount[key]) {
+        numberCount[key] = numberCount[key] + 1;
+      } 
+      counter++
+      if(!numberCount[String(counter)]){
+        findValue = counter
+      }
     }
   }
-  return true;
+
+
+  return [repeatedValue, findValue];
 };
 
-const  n = 6
-console.log(isUgly(n));
+const grid = [
+  [1, 3],
+  [2, 2],
+];
+console.log(findMissingAndRepeatedValues(grid));
