@@ -1,34 +1,23 @@
-var findMissingAndRepeatedValues = function (grid) {
-
-  const numberCount = {};
-  let repeatedValue = 0;
-  let findValue = 1;
-  let counter = 0
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = 0; j < grid[i].length; j++) {
-      let key = String(grid[i][j]);
-      if (+numberCount[key] >= 2) {
-        repeatedValue = grid[i][j];
-      }
-      if (!numberCount[key]) {
-        numberCount[key] = 1;
-      } 
-      if (numberCount[key]) {
-        numberCount[key] = numberCount[key] + 1;
-      } 
-      counter++
-      if(!numberCount[String(counter)]){
-        findValue = counter
-      }
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function (nums, val) {
+  const result = [];
+  const result2 = [];
+  let pureNumber = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === val) {
+      result.push("_");
+      pureNumber++;
+    }
+    if (nums[i] !== val) {
+      result2.push(nums[i]);
     }
   }
-
-
-  return [repeatedValue, findValue];
+  return pureNumber;
 };
-
-const grid = [
-  [1, 3],
-  [2, 2],
-];
-console.log(findMissingAndRepeatedValues(grid));
+const nums = [3, 2, 2, 3];
+const val = 3;
+console.log(removeElement(nums, val));
