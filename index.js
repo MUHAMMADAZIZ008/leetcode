@@ -1,19 +1,27 @@
 /**
- * @param {number[]} hours
+ * @param {number[]} fruits
+ * @param {number[]} baskets
  * @return {number}
  */
-var countCompleteDayPairs = function (hours) {
-  let competeDays = 0;
-  for (let i = 0; i < hours.length; i++) {
-    for (let j = i + 1; j < hours.length; j++) {
-      if ((hours[i] + hours[j]) % 24 === 0) {
-        competeDays++;
+var numOfUnplacedFruits = function (fruits, baskets) {
+  const intoBaskets = {};
+  const book = {};
+  for (let f = 0; f < fruits.length; f++) {
+    let key = String(f);
+    for (let b = 0; b < baskets.length; b++) {
+      let keyB = String(b);
+      if (!intoBaskets[key] && fruits[f] <= baskets[b] && !book[keyB]) {
+        intoBaskets[key] = fruits[f];
+        book[keyB] = fruits[f];
       }
     }
   }
-  return competeDays
+  return fruits.length - Object.values(intoBaskets).length;
 };
 
-const hours = [12, 12, 30, 24, 24];
-// const hours = [72, 48, 24, 3];
-console.log(countCompleteDayPairs(hours));
+// const fruits = [4, 2, 5];
+// const baskets = [3, 5, 4];
+
+const fruits = [3,6,1]
+const baskets = [6,4,7]
+console.log(numOfUnplacedFruits(fruits, baskets));
