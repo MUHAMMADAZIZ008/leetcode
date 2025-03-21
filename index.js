@@ -1,23 +1,19 @@
 /**
- * @param {number[]} nums
- * @param {number} val
+ * @param {number[]} hours
  * @return {number}
  */
-var removeElement = function (nums, val) {
-  const result = [];
-  const result2 = [];
-  let pureNumber = 0;
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === val) {
-      result.push("_");
-      pureNumber++;
-    }
-    if (nums[i] !== val) {
-      result2.push(nums[i]);
+var countCompleteDayPairs = function (hours) {
+  let competeDays = 0;
+  for (let i = 0; i < hours.length; i++) {
+    for (let j = i + 1; j < hours.length; j++) {
+      if ((hours[i] + hours[j]) % 24 === 0) {
+        competeDays++;
+      }
     }
   }
-  return pureNumber;
+  return competeDays
 };
-const nums = [3, 2, 2, 3];
-const val = 3;
-console.log(removeElement(nums, val));
+
+const hours = [12, 12, 30, 24, 24];
+// const hours = [72, 48, 24, 3];
+console.log(countCompleteDayPairs(hours));
