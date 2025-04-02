@@ -1,27 +1,45 @@
 /**
- * @param {number[]} fruits
- * @param {number[]} baskets
- * @return {number}
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
  */
-var numOfUnplacedFruits = function (fruits, baskets) {
-  const intoBaskets = {};
-  const book = {};
-  for (let f = 0; f < fruits.length; f++) {
-    let key = String(f);
-    for (let b = 0; b < baskets.length; b++) {
-      let keyB = String(b);
-      if (!intoBaskets[key] && fruits[f] <= baskets[b] && !book[keyB]) {
-        intoBaskets[key] = fruits[f];
-        book[keyB] = fruits[f];
-      }
+var addBinary = function (a, b) {
+  let binaryToNumber = 0;
+
+  if (a === "0" && b === "0") {
+    return "0";
+  }
+
+  for (let i = 0; i < a.length; i++) {
+    if (a[a.length - 1 - i] === "1") {
+      binaryToNumber += 2 ** i;
     }
   }
-  return fruits.length - Object.values(intoBaskets).length;
+
+  for (let i = 0; i < b.length; i++) {
+    if (b[b.length - 1 - i] === "1") {
+      binaryToNumber += 2 ** i;
+    }
+  }
+
+  let digitalToBinary = "";
+  let result = "";
+  while (binaryToNumber !== 0) {
+    if (binaryToNumber === 1 || binaryToNumber === 0) {
+      digitalToBinary += binaryToNumber;
+      for (let j = digitalToBinary.length - 1; j >= 0; j--) {
+        result += digitalToBinary[j];
+      }
+      return result;
+    }
+    digitalToBinary += binaryToNumber % 2;
+    binaryToNumber = Math.floor(binaryToNumber / 2);
+  }
 };
 
-// const fruits = [4, 2, 5];
-// const baskets = [3, 5, 4];
+// const a = "11";
+// const b = "1";
 
-const fruits = [3,6,1]
-const baskets = [6,4,7]
-console.log(numOfUnplacedFruits(fruits, baskets));
+(a = "0"), (b = "0");
+// 2+6 = 8, 1+2+6=9
+console.log(addBinary(a, b));
