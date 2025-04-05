@@ -1,17 +1,36 @@
 /**
- * @param {number[]} nums
+ * @param {string} s
  * @return {number}
  */
-var maxSum = function (nums) {
-  let newArr = [];
-  nums.forEach((value, index) => {
-    if (newArr.indexOf(value) < 0) {
-      newArr.push(value);
+var maxPower = function (s) {
+  let maxLength = 0;
+  const valuesCount = {};
+  for (let i = 0; i < s.length - 1; i++) {
+
+    if (!valuesCount[s[i]]) {
+      
+      valuesCount[s[i]] = [1, i];
+      if (valuesCount[s[i]][0] >= maxLength) {
+        console.log(valuesCount[s[i]][0]);
+
+        maxLength = valuesCount[s[i]][0];
+      }
+    } else if (
+      (valuesCount[s[i]][0] &&
+        s[i] === s[i + 1] &&
+        valuesCount[s[i]][1] - i >= 1) && i > 1 ||
+      (valuesCount[s[i]][0] && s[i] === s[i - 1] && i > 1)
+    ) {
+      valuesCount[s[i]][0] = valuesCount[s[i]][0] + 1;
+      if (valuesCount[s[i]][0] >= maxLength) {
+        maxLength = valuesCount[s[i]][0];
+      }
     }
-  });
-  
+  }
+  return { maxLength, valuesCount };
 };
 
-const  nums = [1,2,3,4,5]
-maxSum(nums)
-
+const s = "l";
+// const s = "abbcccddddeeeeedcba";
+// const s = "corona"
+console.log(maxPower(s));
