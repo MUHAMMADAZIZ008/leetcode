@@ -1,36 +1,18 @@
 /**
- * @param {string} s
+ * @param {number[]} startTime
+ * @param {number[]} endTime
+ * @param {number} queryTime
  * @return {number}
  */
-var maxPower = function (s) {
-  let maxLength = 0;
-  const valuesCount = {};
-  for (let i = 0; i < s.length - 1; i++) {
-
-    if (!valuesCount[s[i]]) {
-      
-      valuesCount[s[i]] = [1, i];
-      if (valuesCount[s[i]][0] >= maxLength) {
-        console.log(valuesCount[s[i]][0]);
-
-        maxLength = valuesCount[s[i]][0];
-      }
-    } else if (
-      (valuesCount[s[i]][0] &&
-        s[i] === s[i + 1] &&
-        valuesCount[s[i]][1] - i >= 1) && i > 1 ||
-      (valuesCount[s[i]][0] && s[i] === s[i - 1] && i > 1)
-    ) {
-      valuesCount[s[i]][0] = valuesCount[s[i]][0] + 1;
-      if (valuesCount[s[i]][0] >= maxLength) {
-        maxLength = valuesCount[s[i]][0];
-      }
+var busyStudent = function (startTime, endTime, queryTime) {
+  let studentCount = 0;
+  endTime.forEach((item, index) => {
+    if (item >= queryTime&& startTime[index] <= queryTime) {
+      studentCount++;
     }
-  }
-  return { maxLength, valuesCount };
+  });
+  return studentCount;
 };
 
-const s = "l";
-// const s = "abbcccddddeeeeedcba";
-// const s = "corona"
-console.log(maxPower(s));
+(startTime = [1, 2, 3]), (endTime = [3, 2, 7]), (queryTime = 4);
+console.log(busyStudent(startTime, endTime, queryTime));
