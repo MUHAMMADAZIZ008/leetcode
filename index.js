@@ -1,14 +1,22 @@
 /**
- * @param {number[]} arr
- * @return {boolean}
+ * @param {integer} init
+ * @return { increment: Function, decrement: Function, reset: Function }
  */
-var threeConsecutiveOdds = function (arr) {
-  for (let i = 1; i < arr.length - 1; i++) {
-    if (arr[i] % 2 && arr[i - 1] % 2 && arr[i + 1] % 2) {
-      return true
-    }
-  }
-  return false;
+var createCounter = function (init) {
+  let = initialValue = init;
+  return {
+    increment: () => {
+      initialValue++;
+      return initialValue;
+    },
+
+    decrement: () => {
+      initialValue--;
+      return initialValue;
+    },
+    reset: () => {
+      initialValue = init;
+      return initialValue;
+    },
+  };
 };
-const arr = [2,6,4,1]
-console.log(threeConsecutiveOdds(arr));
