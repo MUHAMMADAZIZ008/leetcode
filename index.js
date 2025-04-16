@@ -1,22 +1,8 @@
 /**
- * @param {integer} init
- * @return { increment: Function, decrement: Function, reset: Function }
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
  */
-var createCounter = function (init) {
-  let = initialValue = init;
-  return {
-    increment: () => {
-      initialValue++;
-      return initialValue;
-    },
-
-    decrement: () => {
-      initialValue--;
-      return initialValue;
-    },
-    reset: () => {
-      initialValue = init;
-      return initialValue;
-    },
-  };
+var map = function (arr, fn) {
+  return arr.map((item, i) => fn(item, i));
 };
