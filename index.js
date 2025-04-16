@@ -1,18 +1,14 @@
 /**
- * @param {number[]} startTime
- * @param {number[]} endTime
- * @param {number} queryTime
- * @return {number}
+ * @param {number[]} arr
+ * @return {boolean}
  */
-var busyStudent = function (startTime, endTime, queryTime) {
-  let studentCount = 0;
-  endTime.forEach((item, index) => {
-    if (item >= queryTime&& startTime[index] <= queryTime) {
-      studentCount++;
+var threeConsecutiveOdds = function (arr) {
+  for (let i = 1; i < arr.length - 1; i++) {
+    if (arr[i] % 2 && arr[i - 1] % 2 && arr[i + 1] % 2) {
+      return true
     }
-  });
-  return studentCount;
+  }
+  return false;
 };
-
-(startTime = [1, 2, 3]), (endTime = [3, 2, 7]), (queryTime = 4);
-console.log(busyStudent(startTime, endTime, queryTime));
+const arr = [2,6,4,1]
+console.log(threeConsecutiveOdds(arr));
