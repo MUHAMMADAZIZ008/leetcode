@@ -1,9 +1,11 @@
 /**
- * @param {Function} fn
- * @param {Array} args
- * @param {number} t
- * @return {Function}
+ * @param {Object|Array} obj
+ * @return {boolean}
  */
-var cancellable = function(fn, args, t) {
-  const value = fn(...args)
+var isEmpty = function (obj) {
+  if (Array.isArray(obj)) {
+    return obj.length ? false : true;
+  } else {
+    return Object.keys(obj).length ? false : true
+  }
 };
