@@ -1,18 +1,9 @@
 /**
- * @param {number[]} startTime
- * @param {number[]} endTime
- * @param {number} queryTime
- * @return {number}
+ * @param {Function} fn
+ * @param {Array} args
+ * @param {number} t
+ * @return {Function}
  */
-var busyStudent = function (startTime, endTime, queryTime) {
-  let studentCount = 0;
-  endTime.forEach((item, index) => {
-    if (item >= queryTime&& startTime[index] <= queryTime) {
-      studentCount++;
-    }
-  });
-  return studentCount;
+var cancellable = function(fn, args, t) {
+  const value = fn(...args)
 };
-
-(startTime = [1, 2, 3]), (endTime = [3, 2, 7]), (queryTime = 4);
-console.log(busyStudent(startTime, endTime, queryTime));
