@@ -1,41 +1,31 @@
 // /**
-//  * @param {Array} arr
-//  * @param {number} size
-//  * @return {Array}
+//  * @param {number[]} nums
+//  * @return {number}
 //  */
-// var chunk = function (arr, size) {
-//   if (!arr.length || !size) return arr;
-//   const returnValue = [];
-//   let subArr = [];
-//   let copyI = 1;
+// var removeDuplicates = function (nums) {
+//   const newArr = { num: [], symbol: [] };
 
-//   for (let i = 0; i < arr.length; i++) {
-//     subArr.push(arr[i]);
-//     if (copyI === size) {
-//       returnValue.push(subArr);
-//       subArr = [];
-//       copyI = 0;
-//     }
-//     if (i === arr.length - 1 && subArr.length) {
-//       returnValue.push(subArr);
+//   nums.forEach((value) => {
+//     if (newArr.num.indexOf(value) < 0) {
+//       newArr.num.push(value);
+//     } else {
+//       newArr.symbol.push("_");
 //     }
 
-//     copyI++;
-//   }
-//   return returnValue;
+//   });
+//   return [...newArr.num, ...newArr.symbol]
 // };
 
-// const arr = [1, 2, 3, 4, 5];
-// const size = 2;
-// console.log(chunk(arr, size));
+// const nums = [1, 1, 2];
+// // const nums = [0,0,1,1,1,2,2,3,3,4]
+// console.log(removeDuplicates(nums));
 
-let i = 10
-function fn() {
-  i--
-  console.log(i);
-  if (i  > 0) {
-    fn()
+function fibonacciNumbers(num) {
+  let total = 1;
+  for (let i = 1; i <= num; i++) {
+    total *= i;
   }
+  return total;
 }
 
-fn()
+console.log(fibonacciNumbers(4));
